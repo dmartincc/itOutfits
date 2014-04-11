@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Be fashionable, discover the latest fashion trends on clothes, brands and fashion bloggers with itOutfits.">
+    <meta name="keywords" content="it outfits, itoutfits, fashion bloggers, fashion trends, fashionista, latest fashion trends, fashion, models, clothes, outfits, shoes, trousers, jackets, street sytle, jeans">
+    <meta name="twitter:site" content="@itoutfits">
+    <meta name="twitter:domain" content="itoutfits.com">
+    <title>itOutfits | {{title}}</title>
+    <link rel="stylesheet" href="static/css/foundation.css" />
+    <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
+    <script src="static/js/vendor/modernizr.js"></script>
+    <style>
+    html { 
+      background: url(static/img/Background_black.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      }
+      body {
+      background: transparent;
+      }
+      h4, h2, h3, footer {
+      color: white;
+      font-family: "Proxima", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 100;
+      letter-spacing: 1px;
+      line-height: 1.325;
+      }
+      
+
+      nav{background: black !important;}
+
+      #footer{
+        height: 50px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        line-height: 50px;
+        color: #aaa;
+        text-align: center;
+        width: 100%;
+
+    }
+
+    .image {
+     height: 100%;     
+    }
+
+    .search {
+     color: black;
+     
+     opacity:0.8;    
+    }
+      
+    .top-bar {height: 50px;
+              opacity:0.8; }
+
+    .main-content{
+      background-color: #F0F0F0 !important;
+    }
+    .extra-content{
+      background-color: white !important;
+    }
+
+    .black{color:grey;}
+
+    .title{color:grey;}
+
+
+    
+     
+    </style>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49756852-1', 'itoutfits.com');
+      ga('send', 'pageview');
+
+    </script>
+  </head>
+  <body>
+    {% block mainpage %}{% endblock %}          
+    {% block search %}{% endblock %}   
+    {% block about %}{% endblock %}         
+      
+    <br>
+    <div class="row">
+    <footer class="text-center">            
+            Handcrafted by <strong>itOutfits</strong> since 2014.
+           |<a href="mailto:admin@itoutfits.com" style="color: white"> Contact |<a>
+            <a href="/about" style="color: white"> About us<a>
+    </footer>
+    </div>
+    <br>   
+        
+    <script src="static/js/vendor/jquery.js"></script>
+    <script src="static/js/foundation.min.js"></script>
+    <script>      
+      $(document).foundation();      
+    </script>
+    <script>      
+      $('.row[data-match-height]').each(function(){
+      var self = $(this);
+      self.find('.panel').height(self.height());
+      $(window).on('resize', function(event) {
+        var row_width = self.width();
+        var panels = self.find('.panel');
+        // Reset height of the panels
+        panels.height('');
+        var h = self.height();
+        panels.each(function() {
+          var panel = $(this);
+          if ((row_width - panel.width()) > 40) {
+            panel.height(h);
+          }
+        });
+      });
+    });
+    </script>
+  </body>
+</html>
