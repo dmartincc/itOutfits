@@ -37,14 +37,21 @@ def search():
     if request.method =="POST":
         search_term = request.form['text']
     else:
-        search_term = "Tuula"
+        search_term = "outfits"
     db = get_db('dev-itoutfits')
     query = {"titleBlog":search_term}
-    mongoData = db.content.find(query).count()
-    if mongoData > 0:
-        output = db.content.find(query)        
-    else:
-        output = searchES(search_term)
+    #mongoData = db.content.find(query).count()
+    #mongoData = db.command('text', 'content', search=search_term).count()
+    #if mongoData > 0:
+        #mongoData = db.content.runCommand("text",{search:"Tuula", sort:"date"})
+        #db.command('text', 'content', search=search_term)
+    mongoData =  db.command('text', 'content', search=search_term)
+    output = []
+    for item in mongoData['results']:
+        output.append(item['obj'])
+    #output = db.content.find(query)        
+    #else:
+    #    output = searchES(search_term)
     return render_template("search.html",
                             title = search_term,                            
                             data = output)    

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*
-import json, feedparser
+import json, feedparser, datetime
 from pattern.web import URL, DOM, plaintext, strip_tags, decode_entities
 
 
@@ -35,46 +35,50 @@ def blogsData(blogs):
 	conn = get_db_es(index_name)
 	
 	for item in d['entries']:
-		dic = {}
-		dic['rssLink'] = blogs
-		dic['titleBlog'] = d['feed']['title'].encode('utf-8').replace("\xe2\x80\x99","'")
-		dic['descriptionBlog'] = d['feed']['description'].encode('utf-8').replace("\xe2\x80\x99","'")
-		dic['updated'] = d['feed']['updated'].encode('utf-8')	
+		dic = {}		
 		dic['titlePost'] = item.title.encode('utf-8').replace("\xe2\x80\x99","'")
-		dic['link'] = item.link.encode('utf-8')
-		#Detag content, define parsing rules for outfits and
-		#set nltk process
-		if item.content[0]:
-			text = plaintext(item.content[0]['value'])
-			dic['content'] = text.encode('utf-8').replace("\xe2\x80\x99","'").replace("\n"," ").replace(":"," ")
-			dom = DOM(item.content)
-			imagesUrl = []
-			for e in dom('img'):
-				imagesUrl.append(e.attributes.get('src','').encode('utf-8'))
-			dic['images'] = imagesUrl
-		elif item.description:
-			text = plaintext(item.description)
-			dic['content'] = text.encode('utf-8').replace("\xe2\x80\x99","'").replace("\n"," ").replace(":"," ")
-			dom = DOM(item.description)
-			imagesUrl = []
-			for e in dom('img'):
-				imagesUrl.append(e.attributes.get('src','').encode('utf-8'))
-			dic['images'] = imagesUrl
-		if item.published:
-			dic['published'] = item.published.encode('utf-8')
-		
-		if "tags" in item:
-			tags = []
-			for tag in  item.tags:
-				tags.append(tag.term.encode('utf-8'))
-			dic['tags'] = tags	
-		try:
-			print dic		
-			#db.content.insert(dic)
-			type_name="article"
-			#conn.index(json.dumps(dic), index_name, type_name)
-		except ValueError:
-			pass
+		num =db.content.find({"titlePost":dic['titlePost']}).count()
+		if num == 0:
+			#print dic['titlePost'], num
+			dic['rssLink'] = blogs
+			dic['titleBlog'] = d['feed']['title'].encode('utf-8').replace("\xe2\x80\x99","'")
+			dic['updated'] = d['feed']['updated'].encode('utf-8')		
+			dic['descriptionBlog'] = d['feed']['description'].encode('utf-8').replace("\xe2\x80\x99","'")				
+			dic['link'] = item.link.encode('utf-8')
+			dic['date']=datetime.datetime.utcnow()
+			#Detag content, define parsing rules for outfits and
+			#set nltk process
+			if item.content[0]:
+				text = plaintext(item.content[0]['value'])
+				dic['content'] = text.encode('utf-8').replace("\xe2\x80\x99","'").replace("\n"," ").replace(":"," ")
+				dom = DOM(item.content)
+				imagesUrl = []
+				for e in dom('img'):
+					imagesUrl.append(e.attributes.get('src','').encode('utf-8'))
+				dic['images'] = imagesUrl
+			elif item.description:
+				text = plaintext(item.description)
+				dic['content'] = text.encode('utf-8').replace("\xe2\x80\x99","'").replace("\n"," ").replace(":"," ")
+				dom = DOM(item.description)
+				imagesUrl = []
+				for e in dom('img'):
+					imagesUrl.append(e.attributes.get('src','').encode('utf-8'))
+				dic['images'] = imagesUrl
+			if item.published:
+				dic['published'] = item.published.encode('utf-8')
+			
+			if "tags" in item:
+				tags = []
+				for tag in  item.tags:
+					tags.append(tag.term.encode('utf-8'))
+				dic['tags'] = tags	
+			try:
+				#print dic		
+				db.content.update({"titlePost":dic['titlePost']},dic,upsert=True)
+				#type_name="article"
+				#conn.index(json.dumps(dic), index_name, type_name)
+			except ValueError:
+				pass
 
 	#Add result to MongoDB
 	#return dic
