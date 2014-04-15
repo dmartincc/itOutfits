@@ -28,15 +28,15 @@
       <div class="large-10 columns"> 
 	<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-5 center">
 	{% for item in data %}    
-		{% if item.images[0] %}
+		{% if item.images[1] %}
 	     <li class="image">
-	     	<a href= {{item.link}} ><img src={{item.images[0]}}></a>
+	     	<a href= {{item.link}} ><img src={{item.images[1]}}></a>
 		    <div class="panel">
 		        <h4>{{item.titlePost}}</h4>
 		        <h6 class="subheader">{{item.titleBlog}}</h6>
 		    </div> 
 	     </li>
-	     {% endif %}      
+	   {% endif %}      
 	{% endfor %}
 	</ul>
 	</div>
