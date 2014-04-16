@@ -12,7 +12,12 @@ blogs=['http://sincerelyjules.com/feed',
        'http://www.tuulavintage.com/feed',
        'http://www.lovely-pepa.com/feed',
        'http://www.amlul.com/feed',
-       'http://mariannan.costume.fi/feed']
+       'http://mariannan.costume.fi/feed',
+       'http://www.bryanboy.com/feed',
+       'http://www.miarmarioenruinas.com/feed',
+       'http://seamsforadesire.com/feed',
+       'http://www.katelovesme.net/feeds/posts/default',
+       'http://fashionistabarbieuk.com/feed']
        
 def get_db_es(db_name):
     import pyes 
@@ -40,6 +45,8 @@ def blogsData(blogs):
 		num =db.content.find({"titlePost":dic['titlePost']}).count()
 		if num == 0:
 			#print dic['titlePost'], num
+			dic['titlePostUrl'] = item.title.encode('utf-8').replace("\xe2\x80\x99","'").replace(" ", "")
+			dic['titleBlogUrl'] = d['feed']['title'].encode('utf-8').replace("\xe2\x80\x99","'").replace(" ", "")
 			dic['rssLink'] = blogs
 			dic['titleBlog'] = d['feed']['title'].encode('utf-8').replace("\xe2\x80\x99","'")
 			dic['updated'] = d['feed']['updated'].encode('utf-8')		

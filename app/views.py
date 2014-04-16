@@ -32,29 +32,46 @@ def about():
     return render_template("about.html",
                             title = "About")
 
+@app.route("/search/<tag>", methods = ['GET', 'POST'])
 @app.route("/search", methods = ['GET', 'POST'])
-def search():
+def search(tag=None):
     if request.method =="POST":
         search_term = request.form['text']
+    elif tag:
+        search_term = tag
     else:
         search_term = "outfits"
     db = get_db('dev-itoutfits')
     query = {"titleBlog":search_term}
-    #mongoData = db.content.find(query).count()
-    #mongoData = db.command('text', 'content', search=search_term).count()
-    #if mongoData > 0:
-        #mongoData = db.content.runCommand("text",{search:"Tuula", sort:"date"})
-        #db.command('text', 'content', search=search_term)
-    mongoData =  db.command('text', 'content', search=search_term)
-    output = []
-    for item in mongoData['results']:
-        output.append(item['obj'])
-    #output = db.content.find(query)        
+    mongoData = db.content.find(query).count()
+    if mongoData > 0:
+        output = db.content.find(query)        
+    else:
+        mongoData =  db.command('text', 'content', search=search_term)
+        output = []
+        for item in mongoData['results']:
+            output.append(item['obj'])     
     #else:
     #    output = searchES(search_term)
     return render_template("search.html",
                             title = search_term,                            
-                            data = output)    
+                            data = output)   
+
+@app.route("/post/<titleBlogUrl>/<titlePostUrl>", methods = ['GET', 'POST'])
+def post(titleBlogUrl,titlePostUrl):
+    search_term = titlePostUrl
+    db = get_db('dev-itoutfits')
+    query = {"titlePostUrl":search_term}
+    mongoData = db.content.find(query).count()
+    if mongoData > 0:        
+        output = db.content.find(query)
+        titlePost = output[0]['titleBlog']
+        imagesUrl = output[0]['images']         
+    return render_template("post.html",
+                            title = search_term,
+                            post =  titlePost,                            
+                            data = output[0],                            
+                            dataImages = imagesUrl )   
 
 @app.route('/analytics')
 def analytics(): 

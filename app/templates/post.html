@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block post %}   
+    <div class="fixed">
+    <div class="off-canvas-wrap">
+      <div class="inner-wrap">
+        <nav class="tab-bar">
+          <section class="middle tab-bar-section">
+            <a href="/"><img class="logo "src="/static/img/logo_simple_small.png"></a> 
+          </section>               
+        </nav>    
+      </div>
+    </div>
+    </div>   
+    <br>   
+    <br> 
+    <br>    
+    <container>    
+      <div class="large-2 columns">
+        <br>
+        <div class="row">
+          <form action="/search" method="POST">            
+              <input class="search" style="color: #FFFFFF; background-color: black;" type="text" name="text" placeholder="Clothes, brands or bloggers...">   
+        </form>
+       
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-2 center">
+            {% for item in data.tags %}                       
+                <a href="/search/{{item}}" class="button small radius">{{item}}</a>              
+            {% endfor %} 
+            </ul>          
+        </div>
+        <br>
+        </div>
+      </div>
+    </div>
+      <div class="large-10 columns"> 
+      	<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-2 center">
+        <br>
+      	{% for images in dataImages %}                  
+      	     <li >
+      	     	<img src={{images}}>
+      	     </li>      	      
+      	{% endfor %}
+
+      	</ul>
+        <a href= {{data.link}} class="button">Read blog post!!</a>
+	</div>
+    </container>   
+    
+    <div class="row">
+      <div class="large-12 columns">
+     <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'itoufits'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    </div>
+    </div> 
+{% endblock %}
+
