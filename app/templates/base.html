@@ -7,10 +7,10 @@
     <meta name="keywords" content="it outfits, itoutfits, fashion bloggers, fashion trends, fashionista, latest fashion trends, fashion, models, clothes, outfits, shoes, trousers, jackets, street sytle, jeans">
     <meta name="twitter:site" content="@itoutfits">
     <meta name="twitter:domain" content="itoutfits.com">
-    <title>itOutfits | {{title}}</title>
-    <link rel="stylesheet" href="static/css/foundation.css" />
+    <title>itOutfits | {{post}} {{title}} </title>
+    <link rel="stylesheet" href="/static/css/foundation.css" />
     <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
-    <script src="static/js/vendor/modernizr.js"></script>
+    <script src="/static/js/vendor/modernizr.js"></script>
     <style>
     html { 
       background: url(static/img/Background_black.jpg) no-repeat center center fixed; 
@@ -85,10 +85,10 @@
     </script>
   </head>
   <body>
-    {% block mainpage %}{% endblock %}          
-    {% block search %}{% endblock %}   
-    {% block about %}{% endblock %}         
-      
+    {% block mainpage %}{% endblock %}
+    {% block post %}{% endblock %}          
+    {% block search %}{% endblock %}       
+    {% block about %}{% endblock %}      
     <br>
     <div class="row">
     <footer class="text-center">            
@@ -99,8 +99,8 @@
     </div>
     <br>   
         
-    <script src="static/js/vendor/jquery.js"></script>
-    <script src="static/js/foundation.min.js"></script>
+    <script src="/static/js/vendor/jquery.js"></script>
+    <script src="/static/js/foundation.min.js"></script>
     <script>      
       $(document).foundation();      
     </script>
