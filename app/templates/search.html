@@ -5,7 +5,7 @@
       <div class="inner-wrap">
         <nav class="tab-bar">
           <section class="middle tab-bar-section">
-            <a href="/"><img class="logo "src="static/img/logo_simple_small.png"></a> 
+            <a href="/"><img class="logo "src="/static/img/logo_simple_small.png"></a> 
           </section>               
         </nav>    
       </div>
@@ -14,8 +14,7 @@
     <br>   
     <br> 
     <br>    
-    <container>
-    
+    <container>    
       <div class="large-2 columns">
         <br>
         <div class="row">
@@ -28,15 +27,15 @@
       <div class="large-10 columns"> 
 	<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-5 center">
 	{% for item in data %}    
-		{% if item.images[1] %}
+		{% if item.images[0] %}
 	     <li class="image">
-	     	<a href= {{item.link}} ><img src={{item.images[1]}}></a>
+	     	<a href= "/post/{{item.titleBlogUrl}}/{{item.titlePostUrl}}" ><img src={{item.images[0]}}></a>
 		    <div class="panel">
 		        <h4>{{item.titlePost}}</h4>
 		        <h6 class="subheader">{{item.titleBlog}}</h6>
 		    </div> 
 	     </li>
-	   {% endif %}      
+	     {% endif %}      
 	{% endfor %}
 	</ul>
 	</div>
