@@ -73,6 +73,14 @@ def post(titleBlogUrl,titlePostUrl):
                             data = output[0],                            
                             dataImages = imagesUrl )   
 
+@app.route("/latestoutfits", methods = ['GET', 'POST'])
+def latest():    
+    db = get_db('dev-itoutfits')    
+    output = db.content.find().sort('date',-1).limit(21)
+    return render_template("search.html",
+                            title = 'Latest Outfits',                                                       
+                            data = output)   
+
 @app.route('/analytics')
 def analytics(): 
     output= getNews.wordCount()

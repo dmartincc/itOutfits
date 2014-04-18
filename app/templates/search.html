@@ -21,23 +21,34 @@
           <form action="/search" method="POST">            
               <input class="search" style="color: #FFFFFF; background-color: black;" type="text" name="text" placeholder="Clothes, brands or bloggers...">   
         </form>
+        <!-- AddThis Button BEGIN -->     
+        <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+        <a class="addthis_button_facebook"></a>
+        <a class="addthis_button_twitter"></a>
+        <a class="addthis_button_pinterest_share"></a>
+        <a class="addthis_button_google_plusone_share"></a>
+        </div>
+        <br>
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5268d2a97e02b5bb"></script>
+        <!-- AddThis Button END -->
         </div>
       </div>
     </div>
-      <div class="large-10 columns"> 
-	<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-5 center">
-	{% for item in data %}    
-		{% if item.images[0] %}
-	     <li class="image">
-	     	<a href= "/post/{{item.titleBlogUrl}}/{{item.titlePostUrl}}" ><img src={{item.images[0]}}></a>
-		    <div class="panel">
-		        <h4>{{item.titlePost}}</h4>
-		        <h6 class="subheader">{{item.titleBlog}}</h6>
-		    </div> 
-	     </li>
-	     {% endif %}      
-	{% endfor %}
-	</ul>
+      <div class="large-10 columns">       
+    	<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-5 center">
+    	{% for item in data %}    
+    		{% if item.images[0] %}
+    	     <li class="image">
+    	     	<a href= "/post/{{item.titleBlogUrl}}/{{item.titlePostUrl}}" ><img src={{item.images[0]}}></a>
+    		    <div class="panel">
+    		        <h4>{{item.titlePost}}</h4>
+    		        <h6 class="subheader">{{item.titleBlog}}</h6>
+    		    </div> 
+    	     </li>
+    	     {% endif %}      
+    	{% endfor %}
+    	</ul>
 	</div>
     </container>   
     
