@@ -71,7 +71,7 @@ def post(titleBlogUrl,titlePostUrl):
         titlePost = output[0]['titleBlog']
         imagesUrl = output[0]['images']         
     return render_template("post.html",
-                            title = search_term,
+                            title = output[0]['titlePost'],
                             post =  titlePost,                            
                             data = output[0],
                             card= output[0],                           
