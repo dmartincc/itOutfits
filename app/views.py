@@ -25,12 +25,14 @@ def searchES(query):
 @app.route('/')
 def index():
     return render_template("mainpage.html",
-                            title = "Welcome")
+                            title = "Welcome",
+                            card=[])
 
 @app.route('/about')
 def about():
     return render_template("about.html",
-                            title = "About")
+                            title = "About",
+                            card=[])
 
 @app.route("/search/<tag>", methods = ['GET', 'POST'])
 @app.route("/search", methods = ['GET', 'POST'])
@@ -55,7 +57,8 @@ def search(tag=None):
     #    output = searchES(search_term)
     return render_template("search.html",
                             title = search_term,                            
-                            data = output)   
+                            data = output,
+                            card=output[0])   
 
 @app.route("/post/<titleBlogUrl>/<titlePostUrl>", methods = ['GET', 'POST'])
 def post(titleBlogUrl,titlePostUrl):
@@ -70,7 +73,8 @@ def post(titleBlogUrl,titlePostUrl):
     return render_template("post.html",
                             title = search_term,
                             post =  titlePost,                            
-                            data = output[0],                            
+                            data = output[0],
+                            card= output[0],                           
                             dataImages = imagesUrl )   
 
 @app.route("/latestoutfits", methods = ['GET', 'POST'])
