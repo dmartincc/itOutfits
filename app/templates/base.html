@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Be fashionable, discover the latest fashion trends on clothes, brands and fashion bloggers with itOutfits.">
     <meta name="keywords" content="it outfits, itoutfits, fashion bloggers, fashion trends, fashionista, latest fashion trends, fashion, models, clothes, outfits, shoes, trousers, jackets, street sytle, jeans">
-    <meta name="twitter:site" content="@itoutfits">
+    <meta name="twitter:site" content="itoutfits">
+    <meta name="twitter:domain" content="itoutfits.com">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:creator" content={{title}}>
+    <meta name="twitter:title" content="lastest outfit">
+    {% if data[0].images[0] %}
+    <meta name="twitter:image:src" content={{data[0].images[0]}}>
+    {% endif %} 
     <meta name="twitter:domain" content="itoutfits.com">
     <title>itOutfits | {{post}} {{title}} #fashion </title>
     <link rel="stylesheet" href="/static/css/foundation.css" />
