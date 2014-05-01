@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Be fashionable, discover the latest fashion trends on clothes, brands and fashion bloggers with itOutfits.">
     <meta name="keywords" content="it outfits, itoutfits, fashion bloggers, fashion trends, fashionista, latest fashion trends, fashion, models, clothes, outfits, shoes, trousers, jackets, street sytle, jeans">
+    <link rel="canonical" href="http://www.itoutfits.com/">
     <meta name="twitter:site" content="itoutfits">
     <meta name="twitter:domain" content="itoutfits.com">
     <meta name="twitter:card" content="photo">
     <meta name="twitter:creator" content={{title}}>
-    <meta name="twitter:title" content="lastest outfit">
+    <meta name="twitter:title" content="Latest outfit">
     {% if card %}
     <meta name="twitter:image:src" content={{card.images[0]}}>
-    {% endif %} 
-    <meta name="twitter:domain" content="itoutfits.com">
-    <title>itOutfits | {{post}} {{title}} #fashion </title>
+    {% endif %}    
+    <meta property="og:title" content="{{post}} {{title}}" >
+    <meta property="og:site_name" content="itOutfits"/>
+    <meta property="og:url" content="http://www.itoutfits.com/">
+    <meta property="og:description" content="Be fashionable, discover the latest fashion trends on clothes, brands and fashion bloggers with itOutfits." />
+    <title>itOutfits | {{post}} {{title}} </title>
     <link rel="stylesheet" href="/static/css/foundation.css" />
     <link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'>
     <script src="/static/js/vendor/modernizr.js"></script>
