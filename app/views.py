@@ -25,7 +25,7 @@ def searchES(query):
 @app.route('/')
 def index():
     return render_template("mainpage.html",
-                            title = "Welcome",
+                            title = "Welcome to the latest fashion bloggers trends",
                             card=[])
 
 @app.route('/about')
@@ -37,8 +37,8 @@ def about():
 @app.route("/search/<tag>", methods = ['GET', 'POST'])
 @app.route("/search", methods = ['GET', 'POST'])
 def search(tag=None):
-    if request.method =="POST":
-        search_term = request.form['text']
+    if request.args.get('text'):
+        search_term = request.args.get('text')
     elif tag:
         search_term = tag
     else:
