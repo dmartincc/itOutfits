@@ -17,8 +17,19 @@ blogs=['http://sincerelyjules.com/feed',
        'http://www.miarmarioenruinas.com/feed',
        'http://seamsforadesire.com/feed',
        'http://www.katelovesme.net/feeds/posts/default',
-       'http://fashionistabarbieuk.com/feed']
-       
+       'http://fashionistabarbieuk.com/feed',
+       'http://www.fashionsquad.com/feed',
+       'http://www.stylebubble.co.uk/feed',
+       'http://fashionista.com/feed',
+       'http://becauseimaddicted.net/feed',
+       'http://raindropsofsapphire.com/feed',
+       'http://www.cupofcouple.com/feed',
+       'http://www.bymyheels.com/feed',
+       'http://lefashionimage.blogspot.com/feeds/posts/default',
+       'http://thehautepursuit.com/feed',
+       'http://herwaisechoice.com/feed',
+       'http://feeds.feedburner.com/ToVogueOrBust',
+       'http://littlefashionisto.com/feed']       
 def get_db_es(db_name):
     import pyes 
     conn = pyes.ES('http://dwalin-us-east-1.searchly.com/',

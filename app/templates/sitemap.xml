@@ -3,7 +3,7 @@
     {% for rule in rules %}
             <url>
               <loc>{{url_root}}{{rule}}</loc>
-              <changefreq>daily</changefreq>
+              <changefreq>hourly</changefreq>
             </url>
     {% endfor %}
 </urlset>
