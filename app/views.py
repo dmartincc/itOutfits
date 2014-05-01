@@ -83,7 +83,8 @@ def latest():
     output = db.content.find().sort('date',-1).limit(21)
     return render_template("search.html",
                             title = 'Latest Outfits',                                                       
-                            data = output)   
+                            data = output,
+                            card= output[0])   
 
 @app.route('/analytics')
 def analytics(): 
